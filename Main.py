@@ -7,11 +7,11 @@ def menu():
     3 - Extrato
 
     nc - Nova Conta
-    
+
     lc - Listar Contas
-    
+
     nu - Novo Usuário
-    
+
     4 - Sair
 
     '''
@@ -89,7 +89,7 @@ def listar_contas(contas):
         print(f'Agência: {conta["agencia"]}')
         print(f'Número: {conta["numero_conta"]}')
         print(f'TItular: {conta["usuario"]["nome"]}')
-def main(Menu):
+def main():
     AGENCIA = '0001'
     LIMITE_SAQUES = 3
     
@@ -101,7 +101,7 @@ def main(Menu):
     contas = []
 
     while True:
-        opcao = input(Menu)
+        opcao = input()
         
         if opcao == '1':
             valor = float(input('Informe o valor do deposito: '))
@@ -121,7 +121,7 @@ def main(Menu):
                 limite_saques = LIMITE_SAQUES
             )
 
-        if opcao == '3':
+        elif opcao == '3':
             extrato(saldo, extrato = extrato)
 
         elif opcao == 'nu':
