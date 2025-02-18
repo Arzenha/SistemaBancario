@@ -1,4 +1,4 @@
-import textwrap
+
 def menu():
     menu = '''
     1 - Depositar
@@ -16,7 +16,7 @@ def menu():
     4 - Sair
 
     '''
-    return input(textwrap.dedent(menu))
+    return input((menu))
 
 def depositar(saldo, valor, extrato, /):
     if valor > 0:
@@ -48,7 +48,7 @@ def sacar(*, saldo, valor, limite, extrato, numero_saques, limite_saques):
 
 def exibir_extrato(saldo, /, *, extrato):
     print('Extrato:')
-    print('Não foram realizadas movimentações'if not extrato else extrato)
+    print('Não foram realizadas movimentações' if not extrato else extrato)
     print(f'\nSaldo:{saldo:.2f}R$')
 
 def criar_usuario(usuarios):
@@ -87,10 +87,12 @@ def criar_conta(agencia, numero_conta, usuarios):
 def listar_contas(contas):
     for conta in contas:
         print(f'Agência: {conta["agencia"]}')
-        print(f'Número: {conta["numero_conta"]}')
-        print(f'TItular: {conta["usuario"]["nome"]}')
-    else:
+        print(f'Número: {conta["numero"]}')
+        print(f'Titular: {conta["usuario"]["nome"]}')
+    if not contas:
         print('Nenhuma conta cadastrada')
+    else:
+        print('Conta cadastrada com sucesso!')
 def main():
     AGENCIA = '0001'
     LIMITE_SAQUES = 3
