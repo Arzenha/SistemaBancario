@@ -1,3 +1,4 @@
+import textwrap
 def menu():
     menu = '''
     1 - Depositar
@@ -15,7 +16,7 @@ def menu():
     4 - Sair
 
     '''
-    return menu
+    return input(textwrap.dedent(menu))
 
 def depositar(saldo, valor, extrato, /):
     if valor > 0:
@@ -26,7 +27,7 @@ def depositar(saldo, valor, extrato, /):
         print('Operação falhou! O valor informado é inválido.')
     return saldo, extrato
 
-def sacar(*,saldo, valor, limite, extrato, numero_saques, limite_saques):
+def sacar(*, saldo, valor, limite, extrato, numero_saques, limite_saques):
     excedeu_saldo = valor > saldo
     excedeu_limite = valor > limite
     excedeu_saques = numero_saques >= limite_saques
@@ -45,9 +46,9 @@ def sacar(*,saldo, valor, limite, extrato, numero_saques, limite_saques):
         print('Faltou ação')
     return saldo, extrato
 
-def extrato(saldo, /, *, extrato):
+def exibir_extrato(saldo, /, *, extrato):
     print('Extrato:')
-    print(extrato)
+    print('Não foram realizadas movimentações'if not extrato else extrato)
     print(f'\nSaldo:{saldo:.2f}R$')
 
 def criar_usuario(usuarios):
@@ -80,7 +81,6 @@ def criar_conta(agencia, numero_conta, usuarios):
         return {
             'agencia': agencia,
             'numero': numero_conta,
-            'saldo': 0,
             'usuario': usuario}
     print('Usuario não encontrado!')
 
@@ -89,6 +89,8 @@ def listar_contas(contas):
         print(f'Agência: {conta["agencia"]}')
         print(f'Número: {conta["numero_conta"]}')
         print(f'TItular: {conta["usuario"]["nome"]}')
+    else:
+        print('Nenhuma conta cadastrada')
 def main():
     AGENCIA = '0001'
     LIMITE_SAQUES = 3
@@ -101,7 +103,7 @@ def main():
     contas = []
 
     while True:
-        opcao = input()
+        opcao = menu()
         
         if opcao == '1':
             valor = float(input('Informe o valor do deposito: '))
@@ -109,7 +111,6 @@ def main():
             saldo, extrato = depositar(saldo, valor, extrato)
             
         elif opcao == '2':
-            
             valor = float(input('Informe o valor do Saque: '))
             
             saldo, extrato = sacar(
@@ -118,11 +119,11 @@ def main():
                 limite = limite,
                 extrato = extrato,
                 numero_saques = numero_saques,
-                limite_saques = LIMITE_SAQUES
+                limite_saques = LIMITE_SAQUES,
             )
 
         elif opcao == '3':
-            extrato(saldo, extrato = extrato)
+            exibir_extrato(saldo, extrato = extrato)
 
         elif opcao == 'nu':
             criar_usuario(usuarios)
@@ -142,3 +143,4 @@ def main():
 
         else:
             print('Escolhe ai de 1 a 4 de novo')
+main()
