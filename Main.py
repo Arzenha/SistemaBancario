@@ -143,4 +143,5 @@ def main():
 
         else:
             print('Escolhe ai de 1 a 4 de novo')
+
 main()
