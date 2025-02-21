@@ -20,14 +20,18 @@ def menu():
 
 def depositar(saldo, valor, extrato, /):
     if valor > 0:
+        # saldo = saldo + valor
         saldo += valor
+        # extrato = extrato + f'Deposito: R$ {valor:.2f}\n'
         extrato += f'Deposito: R$ {valor:.2f}\n'
         print('Operação realizada com sucesso!')
     else:
         print('Operação falhou! O valor informado é inválido.')
+    # retorna o saldo e o extrato
     return saldo, extrato
 
 def sacar(*, saldo, valor, limite, extrato, numero_saques, limite_saques):
+    # variáveis de controle
     excedeu_saldo = valor > saldo
     excedeu_limite = valor > limite
     excedeu_saques = numero_saques >= limite_saques
@@ -38,8 +42,11 @@ def sacar(*, saldo, valor, limite, extrato, numero_saques, limite_saques):
     elif excedeu_saques:
         print('Já foi o número.máximo de saques.')
     elif valor > 0:
+        # saldo = saldo - valor
         saldo -= valor
+        # extrato = extrato + f'Saque: R$ {valor:.2f}\n'
         extrato +=  f'Saque: R${valor:.2f}\n'
+        # numero_saques = numero_saques + 1
         numero_saques += 1
         print('Operação realizada com sucesso!')
     else:
@@ -48,11 +55,13 @@ def sacar(*, saldo, valor, limite, extrato, numero_saques, limite_saques):
 
 def exibir_extrato(saldo, /, *, extrato):
     print('Extrato:')
+    # print(extrato if extrato else 'Não foram realizadas movimentações')
     print('Não foram realizadas movimentações' if not extrato else extrato)
     print(f'\nSaldo:{saldo:.2f}R$')
 
 def criar_usuario(usuarios):
     cpf = input('Informe o CPF (somente numeros): ')
+    # Filtrar usuarios
     usuario = filtrar_usuario(cpf, usuarios)
     if usuario:
         print('Ja existe um usuario com esse CPF')
@@ -60,7 +69,7 @@ def criar_usuario(usuarios):
     nome = input('Informe o nome completo: ')
     data_nascimento = input('Informe a data de nascimento (dd-mm-aaaa): ')
     endereço = input('Informe o endereço: ')
-    
+    # Adicionar usuario
     usuarios.append({
         'nome': nome,
         'data_nascimento': data_nascimento,
@@ -69,13 +78,15 @@ def criar_usuario(usuarios):
     print('Usuario criado com sucesso!')
 
 def filtrar_usuario(cpf, usuarios):
+    # Se tiver um usuario com o cpf informado, retorna o usuario
     usuarios_filtrados = [usuario for usuario in usuarios if usuario['cpf'] == cpf]
+    # retorna o primeiro usuario da lista de usuarios filtrados, se não tiver nenhum retorna None
     return usuarios_filtrados[0] if usuarios_filtrados else None
 
 def criar_conta(agencia, numero_conta, usuarios):
     cpf = input('Informe o CPF do usuario: ')
     usuario = filtrar_usuario(cpf,usuarios)
-    
+    # Se o usuario existir, retorna um dicionario com os dados da conta
     if usuario:
         print('Conta criada com sucesso!')
         return {
@@ -85,6 +96,7 @@ def criar_conta(agencia, numero_conta, usuarios):
     print('Usuario não encontrado!')
 
 def listar_contas(contas):
+    # Percorrer a lista de contas
     for conta in contas:
         print(f'Agência: {conta["agencia"]}')
         print(f'Número: {conta["numero"]}')
