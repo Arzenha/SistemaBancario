@@ -1,43 +1,53 @@
-Sistema Bancário com Flet
-Este projeto é um sistema bancário simples desenvolvido com a biblioteca Flet para interface gráfica e Python para lógica de negócios. Ele permite realizar operações como Depósito, Saque e Exibição de Extrato de contas bancárias.
+# Sistema Bancário com Flet
 
-Estrutura do Projeto
-A estrutura do projeto está organizada da seguinte forma:
+Este projeto implementa uma interface bancária utilizando a biblioteca [Flet](https://flet.dev/), permitindo realizar operações como depósito, saque e consulta de extrato.
 
-SistemaBancario/
-├── Sistem/
-│   ├── PrincipalPG.py
-│   ├── Main.py
-├── README.md
+## Funcionalidades
+- **Depósito**: Permite ao usuário inserir o CPF e o valor a ser depositado.
+- **Saque**: Permite ao usuário inserir o CPF e o valor a ser sacado.
+- **Exibir Extrato**: Mostra o histórico de transações de um cliente.
 
-Descrição dos Arquivos
-1. PrincipalPG.py
-    Este é o arquivo principal que contém a interface gráfica do sistema bancário. Ele utiliza a biblioteca Flet para criar uma interface amigável e interativa.
+## Tecnologias Utilizadas
+- **Python**
+- **Flet** (para a interface gráfica)
 
-Funcionalidades:
+## Como Executar
 
-Depósito: Permite realizar depósitos em contas bancárias.
-Saque: Permite realizar saques de contas bancárias.
-Extrato: Exibe o histórico de transações de uma conta bancária.
-Navegação: Inclui uma barra de navegação com ícones para diferentes seções.
-Componentes Importantes:
+1. Instale as dependências necessárias:
+   ```sh
+   pip install flet
+   ```
+2. Execute o script principal:
+   ```sh
+   python PrincipalPG.py
+   ```
 
-Botões:
-    Botão de Depósito: Azul com ícone de pagamento.
-    Botão de Saque: Azul com ícone de caixa eletrônico.
-    Botão de Extrato: Azul com ícone de recibo.
-Diálogos:
-    Exibe mensagens de erro ou sucesso ao realizar operações.
-Barra de Navegação:
-    Ícones para "Perfil", "Segurança" e "Configurações".
-2. Main.py
-    Este arquivo contém a lógica de negócios do sistema bancário. Ele define as classes e funções necessárias para gerenciar contas bancárias e realizar transações.
+## Estrutura do Projeto
 
-Funcionalidades:
-    Classes:
-        ContaCorrente: Representa uma conta bancária.
-        Transacao: Classe base para transações.
-        Deposito e Saque: Subclasses de Transacao para operações específicas.
-Funções:
-    filtrar_usuario: Filtra usuários com base no CPF.
-    recuperar_conta_cliente: Recupera a conta de um cliente.
+```
+/
+|-- PrincipalPG.py  # Script principal com a interface
+|-- Main.py         # Contém as classes e funções de Saque, Depósito, etc.
+```
+
+## Como Funciona
+
+1. O sistema apresenta uma tela com três opções: **Depósito**, **Saque** e **Extrato**.
+2. Ao selecionar uma opção, um formulário aparece solicitando o CPF do cliente e o valor da operação.
+3. O sistema valida os dados e processa a transação.
+4. Se bem-sucedida, a operação é registrada e o saldo atualizado.
+5. O histórico de transações pode ser consultado na opção **Extrato**.
+
+## Possíveis Melhorias
+- Persistência de dados (atualmente os dados são perdidos ao fechar o programa)
+- Implementação de um banco de dados
+- Autenticação de usuários
+
+## Autor
+Desenvolvido para fins educacionais e aprendizado de Flet.
+
+---
+
+Sinta-se à vontade para modificar e melhorar o projeto!
+
+
